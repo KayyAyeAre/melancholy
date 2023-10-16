@@ -1,0 +1,9 @@
+name: "melancholy"
+main: "melancholy.Melancholy"
+version: "alpha 2023-31-8"
+minGameVersion: 145.1
+java: true
+
+displayName: "Melancholy"
+author: "KayAyeAre"
+description: "chill"
