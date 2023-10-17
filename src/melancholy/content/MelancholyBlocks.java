@@ -106,7 +106,7 @@ public class MelancholyBlocks {
             );
 
             // i could probably use some wacky equation for this but whatever
-            effectPoints = new float[]{0f, 0.8113f, 0.8491f, 0.8868f, 0.9245f, 0.9623f};
+            effectPoints = new float[]{0.8113f, 0.8491f, 0.8868f, 0.9245f, 0.9623f, 1f};
             intervalSound = MelancholySounds.metalSlam;
             intervalEffect = new MultiEffect(
                     MelancholyFx.crusherCraftHeat.wrap(Pal.redLight.cpy().a(0.2f), 70f),

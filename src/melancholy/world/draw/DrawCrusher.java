@@ -4,7 +4,9 @@ import arc.*;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
 import arc.math.*;
+import arc.util.*;
 import melancholy.math.*;
+import mindustry.entities.units.*;
 import mindustry.gen.*;
 import mindustry.graphics.*;
 import mindustry.world.*;
@@ -20,8 +22,12 @@ public class DrawCrusher extends DrawBlock {
     public int chomps = 5;
 
     public Color colorFrom, colorTo;
-    public float particleDst = 7f, minDstMul = 0.4f, particleWidth = 2f, minWidthMul = 0.2f, minParticleSize = 1.6f, maxParticleSize = 2.6f;
-    public int particleCount = 60;
+    public float crystalDst = 7f, minDstMul = 0.4f, crystalWidth = 2f, minWidthMul = 0.2f, minCrystalSize = 1.6f, maxCrystalSize = 2.6f;
+    public int crystalCount = 60;
+
+    // funky
+    public float particleDst = 8f, minParticleRadius = 0.4f, maxParticleRadius = 0.9f, particleSpread = 20f;
+    public int particleCount = 40;
 
     public DrawCrusher(Color colorFrom, Color colorTo) {
         this.colorFrom = colorFrom;
@@ -37,15 +43,27 @@ public class DrawCrusher extends DrawBlock {
         rand.setSeed(build.id);
 
         // particles
-        float progressp = build.progress() < start + offset ? build.progress() / (start + offset) : Mathf.round((1f - build.progress()) / (1f - (start + offset)), 1f / chomps) + (build.progress() - start);
-        float maxDst = Mathf.dst(particleWidth, particleDst);
         for (int i = 0; i < particleCount; i++) {
+            float fin = Mathf.curve(build.progress(), rand.random(start + offset), start + offset);
+            float angle = rand.range(particleSpread) + (rand.nextBoolean() ? 0f : 180f) + 90f;
+            float dst = rand.random(particleDst) * (1f - fin);
+            float radius = Interp.pow2Out.apply(Mathf.slope(fin)) * rand.random(minParticleRadius, maxParticleRadius);
+
+            // weh
+            Draw.color(colorFrom, colorTo, 1f - fin);
+            Fill.circle(build.x + Angles.trnsx(angle, dst), build.y + Angles.trnsy(angle, dst), radius);
+        }
+
+        // crystals
+        float progressp = build.progress() < start + offset ? build.progress() / (start + offset) : Mathf.round((1f - build.progress()) / (1f - (start + offset)), 1f / chomps) + (build.progress() - start);
+        float maxDst = Mathf.dst(crystalWidth, crystalDst);
+        for (int i = 0; i < crystalCount; i++) {
             float fin = Mathf.curve(progressp, rand.random(start + offset));
             float rot = rand.random(360f);
-            float dst = rand.range(particleDst) * (minDstMul + (1f - minDstMul) * fin);
-            float width = rand.range(particleWidth) * fin * (minWidthMul + (1f - minWidthMul) * (1f - Math.abs(dst) / particleDst));
+            float dst = rand.range(crystalDst) * (minDstMul + (1f - minDstMul) * fin);
+            float width = rand.range(crystalWidth) * fin * (minWidthMul + (1f - minWidthMul) * (1f - Math.abs(dst) / crystalDst));
             float frac = Mathf.dst(width, dst) / maxDst;
-            float radius = Interp.pow2Out.apply(fin) * rand.random(minParticleSize, maxParticleSize) * (1f - frac);
+            float radius = Interp.pow2Out.apply(fin) * rand.random(minCrystalSize, maxCrystalSize) * (1f - frac);
 
             Draw.color(colorFrom, colorTo, frac);
             Drawf.tri(build.x + width, build.y + dst, radius, radius, rot);
@@ -57,6 +75,13 @@ public class DrawCrusher extends DrawBlock {
         // teeth
         for (int i = 0; i < 2; i++) {
             Draw.rect(regions[i], build.x + (progresst * dst * Mathf.sign(Mathf.booleans[i])), build.y);
+        }
+    }
+
+    @Override
+    public void drawPlan(Block block, BuildPlan plan, Eachable<BuildPlan> list) {
+        for (int i = 0; i < 2; i++) {
+            Draw.rect(regions[i], plan.drawx(), plan.drawy());
         }
     }
 
