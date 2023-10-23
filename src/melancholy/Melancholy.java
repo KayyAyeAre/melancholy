@@ -16,6 +16,7 @@ public class Melancholy extends Mod {
     public void loadContent() {
         MelancholyLiquids.load();
         MelancholyItems.load();
+        MelancholyUnitTypes.load();
         MelancholyBlocks.load();
     }
 }

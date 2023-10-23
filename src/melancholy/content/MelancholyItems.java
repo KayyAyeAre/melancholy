@@ -23,7 +23,9 @@ public class MelancholyItems {
 
         silica = new Item("silica", Color.valueOf("e9bfd3"));
 
-        bitumen = new Item("bitumen", Color.valueOf("4e5046"));
+        bitumen = new Item("bitumen", Color.valueOf("4e5046")) {{
+            buildable = false;
+        }};
 
         vasteel = new Item("vasteel", Color.valueOf("91c5d6"));
 

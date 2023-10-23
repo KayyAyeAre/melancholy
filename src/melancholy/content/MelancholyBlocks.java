@@ -3,6 +3,7 @@ package melancholy.content;
 import melancholy.graphics.*;
 import melancholy.world.blocks.environment.*;
 import melancholy.world.blocks.production.*;
+import melancholy.world.blocks.storage.*;
 import melancholy.world.draw.*;
 import mindustry.content.*;
 import mindustry.entities.effect.*;
@@ -12,6 +13,7 @@ import mindustry.world.*;
 import mindustry.world.blocks.environment.*;
 import mindustry.world.blocks.production.*;
 import mindustry.world.draw.*;
+import mindustry.world.meta.*;
 
 public class MelancholyBlocks {
     public static Block
@@ -22,7 +24,11 @@ public class MelancholyBlocks {
     // crafting
     shardPress, reductionFurnace,
     // production
-    kineticCrusher
+    kineticCrusher,
+    // campaign - blueprint scanners
+    crudeScanner,
+    // storage
+    industryHub, transferHub
     ;
 
     public static void load() {
@@ -165,6 +171,20 @@ public class MelancholyBlocks {
                     new DrawGlowProgress(Pal.redLight, "-glow-top"),
                     new DrawWallExtractor()
             );
+        }};
+        // endregion
+        // region storage
+        industryHub = new MelancholyCoreBlock("industry-hub") {{
+            requirements(Category.effect, BuildVisibility.editorOnly, ItemStack.with());
+            unitType = MelancholyUnitTypes.aleph;
+            squareSprite = false;
+            size = 5;
+            // do i even need to?
+            health = 10000;
+            itemCapacity = 10000;
+            alwaysUnlocked = true;
+            isFirstTier = true;
+            unitCapModifier = 40;
         }};
         // endregion
     }
