@@ -1,6 +1,7 @@
 package melancholy.content;
 
 import melancholy.graphics.*;
+import melancholy.world.blocks.distribution.*;
 import melancholy.world.blocks.environment.*;
 import melancholy.world.blocks.production.*;
 import melancholy.world.blocks.storage.*;
@@ -10,6 +11,7 @@ import mindustry.entities.effect.*;
 import mindustry.graphics.*;
 import mindustry.type.*;
 import mindustry.world.*;
+import mindustry.world.blocks.distribution.*;
 import mindustry.world.blocks.environment.*;
 import mindustry.world.blocks.production.*;
 import mindustry.world.draw.*;
@@ -25,6 +27,8 @@ public class MelancholyBlocks {
     shardPress, reductionFurnace,
     // production
     kineticCrusher,
+    // transport - items
+    pulseBelt, walledPulseBelt, pulseRouter, pulseOverflowGate, pulseUnderflowGate, pulseBridge, freightStation, freightReceiver,
     // campaign - blueprint scanners
     crudeScanner,
     // storage
@@ -171,6 +175,48 @@ public class MelancholyBlocks {
                     new DrawGlowProgress(Pal.redLight, "-glow-top"),
                     new DrawWallExtractor()
             );
+        }};
+        // endregion
+        // region item transport
+        pulseBelt = new Belt("pulse-belt") {{
+            requirements(Category.distribution, ItemStack.with());
+            speed = 3f;
+        }};
+
+        walledPulseBelt = new Belt("walled-pulse-belt") {{
+            requirements(Category.distribution, ItemStack.with());
+            speed = 3f;
+            armored = true;
+        }};
+
+        pulseRouter = new DuctRouter("pulse-router") {{
+            requirements(Category.distribution, ItemStack.with());
+            speed = 3f;
+            regionRotated1 = 1;
+            solid = false;
+            squareSprite = false;
+        }};
+
+        pulseOverflowGate = new OverflowDuct("pulse-overflow-gate") {{
+            requirements(Category.distribution, ItemStack.with());
+            speed = 3f;
+            solid = false;
+            squareSprite = false;
+        }};
+
+        pulseUnderflowGate = new OverflowDuct("pulse-underflow-gate") {{
+            requirements(Category.distribution, ItemStack.with());
+            speed = 3f;
+            solid = false;
+            squareSprite = false;
+            invert = true;
+        }};
+
+        pulseBridge = new DuctBridge("pulse-bridge") {{
+            requirements(Category.distribution, ItemStack.with());
+            speed = 3f;
+            solid = false;
+            squareSprite = false;
         }};
         // endregion
         // region storage
