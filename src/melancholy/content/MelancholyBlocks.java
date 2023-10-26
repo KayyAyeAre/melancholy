@@ -123,10 +123,10 @@ public class MelancholyBlocks {
                     MelancholyFx.shardPressSparks
             );
 
-            outputItem = new ItemStack(MelancholyItems.cyledge, 5);
+            outputItem = new ItemStack(MelancholyItems.cyledge, 10);
             craftTime = 300f;
             itemCapacity = 30;
-            consumeItem(MelancholyItems.silica, 8);
+            consumeItem(MelancholyItems.silica, 15);
         }};
 
         reductionFurnace = new GenericCrafter("reduction-furnace") {{
@@ -144,7 +144,7 @@ public class MelancholyBlocks {
                     new DrawGlowAlternating(Pal.redLight, 0.3f, Layer.block + 0.02f)
             );
 
-            outputItem = new ItemStack(Items.silicon, 6);
+            outputItem = new ItemStack(Items.silicon, 10);
             outputLiquid = new LiquidStack(MelancholyLiquids.carbonyl, 5f / 60f);
             ignoreLiquidFullness = true;
             craftTime = 240f;
@@ -154,7 +154,7 @@ public class MelancholyBlocks {
                     MelancholyFx.reductionFurnaceSmoke,
                     MelancholyFx.reductionFurnaceKaboom
             );
-            consumeItems(ItemStack.with(MelancholyItems.silica, 4, MelancholyItems.bitumen, 3));
+            consumeItems(ItemStack.with(MelancholyItems.silica, 8, MelancholyItems.bitumen, 4));
         }};
         // endregion
         // region production
@@ -215,6 +215,7 @@ public class MelancholyBlocks {
         pulseBridge = new DuctBridge("pulse-bridge") {{
             requirements(Category.distribution, ItemStack.with());
             speed = 3f;
+            range = 6;
             solid = false;
             squareSprite = false;
         }};

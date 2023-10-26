@@ -30,7 +30,7 @@ public class CrusherDrill extends Block {
     public static Item placeItem, invalidItem;
     public int count;
 
-    public float drillTime = 300f;
+    public float drillTime = 60f;
     public int tier = 1;
     public int itemMultiplier = 2;
 

@@ -9,6 +9,7 @@ import melancholy.graphics.*;
 import mindustry.*;
 import mindustry.content.*;
 import mindustry.core.*;
+import mindustry.entities.units.*;
 import mindustry.gen.*;
 import mindustry.graphics.*;
 import mindustry.world.*;
@@ -69,6 +70,12 @@ public class DrawVents extends DrawBlock {
 
         Draw.z(z);
         Draw.color();
+    }
+
+    @Override
+    public void drawPlan(Block block, BuildPlan plan, Eachable<BuildPlan> list) {
+        // draws over other plans and blocks, looks funky but i cant do anything about it
+        Draw.rect(ventRegion, plan.drawx(), plan.drawy());
     }
 
     @Override
