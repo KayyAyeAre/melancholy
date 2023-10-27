@@ -22,7 +22,10 @@ public class MelancholyBlocks {
     // environment
     drySnow, capSnow, limestone, limestoneCrater, limestoneSheet, lushrock, lushmead, glowlush, bluerock, blueslate, chert, chertCrater,
     drySnowWall, limestoneWall, lushrockWall, bluerockWall, chertWall,
-    drySnowPatch, bluerockSpikes,
+    drySnowPatch, bluerockSpikes, lushGrowth, lushBranches,
+    drySnowBoulder, limestoneBoulder, limestoneStrata, lushrockBoulder, lushSprout, bluerockBoulder, chertBoulder,
+    // environment - resources
+    crystoneNode, vasteelNode, irresnantNode, silicaVein, bitumenVein, talcVein, iceDeposit,
     // crafting
     shardPress, reductionFurnace,
     // production
@@ -91,11 +94,53 @@ public class MelancholyBlocks {
             variants = 3;
         }};
 
-        drySnowPatch = new OverlayFloor("dry-snow-patch");
+        drySnowPatch = new BigOverlayFloor("dry-snow-patch");
 
         bluerockSpikes = new TallBlock("bluerock-spikes") {{
-            variants = 3;
+            variants = 2;
             clipSize = 120f;
+        }};
+
+        lushGrowth = new TreeBlock("lush-growth");
+
+        lushBranches = new SeaBush("lush-branches") {{
+            lobesMin = 6;
+            lobesMax = 10;
+            magMin = 3f;
+            magMax = 6f;
+            spread = 20f;
+            // like a tree thing
+            breakable = false;
+        }};
+
+        drySnowBoulder = new Prop("dry-snow-boulder") {{
+            variants = 2;
+        }};
+
+        limestoneBoulder = new Prop("limestone-boulder") {{
+            variants = 2;
+        }};
+
+        limestoneStrata = new WideTilingProp("limestone-strata") {{
+            variants = 2;
+        }};
+
+        lushrockBoulder = new Prop("lushrock-boulder") {{
+            variants = 2;
+        }};
+
+        lushSprout = new SeaBush("lush-sprout") {{
+            lobesMin = 3;
+            lobesMax = 5;
+            spread = 20f;
+        }};
+
+        bluerockBoulder = new Prop("bluerock-boulder") {{
+            variants = 2;
+        }};
+
+        chertBoulder = new Prop("chert-boulder") {{
+            variants = 2;
         }};
 
         // endregion
