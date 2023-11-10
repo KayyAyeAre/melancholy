@@ -142,7 +142,29 @@ public class MelancholyBlocks {
         chertBoulder = new Prop("chert-boulder") {{
             variants = 2;
         }};
+        // endregion
+        // region resources
+        crystoneNode = new OreNode("crystone-node") {{
+            itemDrop = MelancholyItems.crystone;
+            variants = 2; // TODO more variants should but im really tired of spriting environment blocks
+            customShadow = true;
+            fillsTile = false;
+        }};
 
+        // just blank sprites because i REALLY dont wanna go through all of that again
+        vasteelNode = new OreNode("vasteel-node") {{
+            itemDrop = MelancholyItems.vasteel;
+            variants = 1;
+            customShadow = true;
+            fillsTile = false;
+        }};
+
+        irresnantNode = new OreNode("irresnant-node") {{
+            itemDrop = Items.thorium; // shhhhhhhh
+            variants = 1;
+            customShadow = true;
+            fillsTile = false;
+        }};
         // endregion
         // region crafting
         shardPress = new EffectCrafter("shard-press") {{
@@ -263,6 +285,9 @@ public class MelancholyBlocks {
             range = 6;
             solid = false;
             squareSprite = false;
+
+            // dunno if i have to put it inside here but i may as well
+            ((Duct) pulseBelt).bridgeReplacement = ((Duct) walledPulseBelt).bridgeReplacement = this;
         }};
         // endregion
         // region storage

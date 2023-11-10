@@ -30,9 +30,9 @@ public class CrusherDrill extends Block {
     public static Item placeItem, invalidItem;
     public int count;
 
-    public float drillTime = 60f;
+    public float drillTime = 240f;
     public int tier = 1;
-    public int itemMultiplier = 2;
+    public int itemMultiplier = 4;
 
     public Effect mineEffect = Fx.none;
     public Sound mineSound = Sounds.drillImpact;
